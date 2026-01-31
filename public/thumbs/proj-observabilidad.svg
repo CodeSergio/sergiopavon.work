@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320" role="img" aria-label="Miniatura: observabilidad batch">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1016"/>
+      <stop offset="1" stop-color="#171f2e"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="460" height="300" rx="28" fill="url(#bg)"/>
+  <g fill="none" stroke="#eef2ff" stroke-opacity="0.18" stroke-width="4" stroke-linecap="round">
+    <path d="M56 220h86"/>
+    <path d="M56 190h140"/>
+    <path d="M56 160h110"/>
+  </g>
+  <path d="M230 232c34-18 48-46 82-62c44-20 92-10 122-34" fill="none" stroke="#ff6a52" stroke-width="7" stroke-linecap="round"/>
+  <text x="42" y="108" fill="#eef2ff" font-size="26" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-weight="700">Observabilidad batch</text>
+  <text x="42" y="140" fill="#a2acc0" font-size="18" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">logs / metricas / alertas</text>
+</svg>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { slugifyTag } from '../../lib/tags';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: Awaited<ReturnType<typeof getCollection>>[number] };
+const { Content } = await post.render();
+---
+
+<BaseLayout title={`${post.data.title} | Blog IA`} description={post.data.excerpt}>
+  <article class="rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--card)_92%,var(--fg)_4%)] p-5 md:p-8">
+    <header class="grid gap-6 md:grid-cols-[1fr_260px] md:items-start">
+      <div class="space-y-4">
+        <p class="text-xs font-semibold tracking-wide text-[var(--muted)]">Blog IA</p>
+        <h1 class="font-display text-4xl leading-tight md:text-5xl">{post.data.title}</h1>
+        <div class="flex flex-wrap items-center gap-2">
+          <time class="text-sm text-[var(--muted)]" datetime={post.data.date.toISOString()}>
+            {post.data.date.toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: '2-digit' })}
+          </time>
+          {post.data.sourceUrl && (
+            <a class="btn btn-secondary" href={post.data.sourceUrl} rel="noreferrer" target="_blank">Fuente</a>
+          )}
+        </div>
+        {post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2" aria-label="Etiquetas">
+            {post.data.tags.map((t) => (
+              <a class="btn btn-secondary" href={`/blog/tag/${slugifyTag(t)}`}>#{t}</a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {post.data.cover && (
+        <figure class="rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--bg)_55%,var(--card))] p-2 md:mt-8">
+          <img
+            src={post.data.cover}
+            alt={post.data.coverAlt ?? `Ilustración: ${post.data.title}`}
+            class="h-36 w-full rounded-xl object-cover opacity-90 md:h-40"
+            loading="lazy"
+          />
+        </figure>
+      )}
+    </header>
+
+    <div class="prose mt-8 max-w-none prose-headings:font-display prose-headings:text-[var(--fg)] prose-p:text-[var(--fg)] prose-p:leading-relaxed prose-p:first:text-lg prose-p:first:font-medium prose-strong:text-[var(--fg)] prose-a:text-[var(--fg)] prose-a:decoration-[color-mix(in_oklab,var(--accent)_55%,transparent)] prose-a:underline-offset-4 prose-ul:text-[var(--fg)] prose-li:text-[var(--fg)] prose-hr:border-[var(--border)]">
+      <Content />
+    </div>
+
+    <div class="mt-10">
+      <a class="btn btn-secondary" href="/blog">Volver al blog IA</a>
+    </div>
+  </article>
+</BaseLayout>

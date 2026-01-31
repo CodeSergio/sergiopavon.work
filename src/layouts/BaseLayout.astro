@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+import ThemeInit from '../components/ThemeInit.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props as Props;
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <ThemeInit />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical.toString()} />}
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#f7f3ea" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1016" media="(prefers-color-scheme: dark)" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+    <title>{title}</title>
+
+    <script is:inline>
+      (() => {
+        const STORAGE_KEY = 'theme';
+        const getCurrentTheme = () => (document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+        const setTheme = (theme) => {
+          document.documentElement.dataset.theme = theme;
+          try {
+            localStorage.setItem(STORAGE_KEY, theme);
+          } catch {
+            // ignore
+          }
+          syncToggles(theme);
+        };
+
+        const syncToggles = (theme) => {
+          const toggles = document.querySelectorAll('[data-theme-toggle]');
+          toggles.forEach((btn) => {
+            btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+            btn.setAttribute('aria-label', theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
+
+            // Icon represents the action (not the current state)
+            // Light mode -> show moon (switch to dark)
+            // Dark mode  -> show sun  (switch to light)
+            const sun = btn.querySelector('[data-theme-icon="sun"]');
+            const moon = btn.querySelector('[data-theme-icon="moon"]');
+            const isDark = theme === 'dark';
+            if (sun) sun.toggleAttribute('hidden', !isDark);
+            if (moon) moon.toggleAttribute('hidden', isDark);
+          });
+        };
+
+        document.addEventListener('click', (ev) => {
+          const target = ev.target;
+          const btn = target && target.closest ? target.closest('[data-theme-toggle]') : null;
+          if (!btn) return;
+          const next = getCurrentTheme() === 'dark' ? 'light' : 'dark';
+          setTheme(next);
+        });
+
+        const onReady = () => syncToggles(getCurrentTheme());
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', onReady, { once: true });
+        } else {
+          onReady();
+        }
+      })();
+    </script>
+
+    <script is:inline>
+      (() => {
+        const prefersReducedMotion = () =>
+          window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const onReady = () => {
+          const els = Array.from(document.querySelectorAll('[data-reveal]'));
+          if (els.length === 0) return;
+          if (prefersReducedMotion()) return;
+          if (!('IntersectionObserver' in window)) return;
+
+          document.documentElement.dataset.motion = 'on';
+          const io = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                if (!entry.isIntersecting) continue;
+                entry.target.classList.add('reveal-ready');
+                io.unobserve(entry.target);
+              }
+            },
+            { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+          );
+          els.forEach((el) => io.observe(el));
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', onReady, { once: true });
+        } else {
+          onReady();
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-dvh bg-[var(--bg)] text-[var(--fg)]">
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <Header />
+    <main id="main-content" tabindex="-1" class="mx-auto max-w-5xl px-5 py-10">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

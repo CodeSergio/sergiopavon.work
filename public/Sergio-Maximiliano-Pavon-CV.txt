@@ -1,0 +1,81 @@
+﻿Sergio Maximiliano Pavón
+Oracle PL/SQL Backend Developer
+Buenos Aires, Argentina
+
+RESUMEN PROFESIONAL
+Oracle PL/SQL Backend Developer Sr. con más de 15 años de experiencia en automatización, operaciones y soporte a sistemas productivos de alta criticidad. Especialista en Oracle, PL/SQL y SQL avanzado, con foco en automatización de procesos operativos, análisis y corrección de datos productivos, resolución de incidentes críticos y continuidad del servicio. Experiencia en Unix/Linux, procesos batch, conciliaciones, controles operativos y validaciones de integridad de datos.
+
+HABILIDADES TÉCNICAS
+Oracle | PL/SQL | SQL avanzado | SQL tuning | Unix/Linux | Shell scripting | Procesos batch | Automatización operativa | Soporte a producción | Análisis y corrección de datos | APIs REST (integración) | Jenkins | Docker | AWS S3 | Elasticsearch | Apache Cassandra | Python | Git
+
+EXPERIENCIA
+Claro Video | Backend Data Developer | Julio 2019 - Octubre 2025
+- Automatización de procesos operativos en entornos productivos mediante Jenkins, Docker y AWS S3.
+- Interacción con usuarios, QA y equipos técnicos para validación de soluciones.
+- Resolución de incidentes productivos de alta criticidad.
+- Ejecución y mantenimiento de procesos batch.
+- Análisis, validación y corrección de datos en bases relacionales y NoSQL.
+- Exposición de procesos PL/SQL vía APIs para integración con aplicaciones PHP.
+- Conciliaciones de pagos.
+- Actualización masiva de datos en lotes para evitar latencia en la replicación.
+- Desarrollo y mantenimiento de componentes backend sobre Oracle, Elasticsearch, Apache Cassandra y Python.
+- Reingeniería de procesos operativos para mejora de performance, estabilidad y escalabilidad.
+
+Allianz Argentina | Analista Técnico Funcional | Abril 2016 - Julio 2019
+- Documentación técnica y funcional.
+- Elaboración de diagramas UML (casos de uso, flujos, DER).
+- Desarrollo en Oracle 11g, Forms y Reports.
+- Análisis, mantenimiento y corrección de incidentes.
+- Conciliaciones para Tesorería.
+- Estimación de tiempos e implementación de mejoras.
+- Reingeniería de procesos legacy.
+
+Close Up International | Analista Técnico Funcional | Agosto 2015 - Abril 2016
+- Documentación técnica y funcional.
+- Elaboración de diagramas UML (casos de uso, flujos, DER).
+- Mantenimiento y corrección de incidentes.
+- Migración de Oracle 11g a Exadata.
+- Conciliaciones para el área de Pagos.
+
+La Caja Seguros (Huenei IT Services) | Analista Técnico Oracle | Julio 2013 - Agosto 2015
+- Documentación técnica y funcional.
+- Análisis, mantenimiento y corrección de incidentes.
+- Desarrollo en Oracle 11g, Forms y Reports.
+- Conciliaciones para Tesorería.
+- Ejecución de procesos y generación de reportes.
+
+DirecTV (Everis) | Analista Técnico Oracle | Diciembre 2012 - Junio 2013
+- Migración del sistema core GO/LIVE IBS.
+- Optimización (tuning) de scripts de proveedores.
+- Interacción con proveedores.
+- Desarrollo de automatizaciones en Fox, T-SQL y PL/SQL.
+- Ejecución, revisión de procesos y generación de reportes.
+
+Cencosud (Everis) | Analista Técnico Oracle | Octubre 2010 - Diciembre 2012
+- Análisis, mantenimiento y corrección de incidentes.
+- Creación de packages y stored procedures en Oracle 10g.
+- Desarrollo de flujos en CRM Engage.
+- Asistencia a usuarios del sistema.
+- Soporte a producción y guardias pasivas.
+
+EDUCACIÓN
+Universidad Nacional de La Matanza | Ingeniería Informática (no graduado)
+Escuela de Educación Técnica N.º 6 | Técnico Informático Profesional (2002-2006)
+
+CERTIFICACIONES
+- Curso de n8n Self-Hosted para Empresas (2025) - https://platzi.com/p/jejo/curso/12255-n8n-selfhosted/diploma/detalle/
+- Curso de Workflows Profesionales con n8n (2025) - https://platzi.com/p/jejo/curso/12250-n8n-profesional/diploma/detalle/
+- Curso de Automatizaciones con n8n (2025) - https://platzi.com/p/jejo/curso/12245-n8n-lowcode/diploma/detalle/
+- Python 3 - OpenWebinars (2024) - https://openwebinars.net/cert/0yfR
+- Flask - Platzi (2022) - https://platzi.com/p/jejo/curso/1540-flask/diploma/detalle/
+- FastAPI Fundamentos - Platzi (2021) - https://platzi.com/p/jejo/curso/2513-fastapi/diploma/detalle/
+- FastAPI Avanzado - Platzi (2021) - https://platzi.com/p/jejo/curso/2514-fastapi-modularizacion-datos/diploma/detalle/
+- Python Profesional - Platzi (2021) - https://platzi.com/p/jejo/curso/2397-python-profesional/diploma/detalle/
+- Git & GitHub - Platzi (2021) - https://platzi.com/p/jejo/curso/1557-git-github/diploma/detalle/
+- Vue JS + Firebase + MEVN - Udemy (2021) - https://www.udemy.com/certificate/UC-7299a4e2-8606-493c-9eb9-9ddbc5583301/
+- Cassandra - OpenWebinars (2020) - https://openwebinars.net/cert/1JgOb
+- Elasticsearch - OpenWebinars (2020) - https://openwebinars.net/cert/Jz1Wb
+- MongoDB - OpenWebinars (2020) - https://openwebinars.net/cert/9ZQGR
+- NumPy - OpenWebinars (2020) - https://openwebinars.net/cert/dk64b
+- Pandas - OpenWebinars (2020) - https://openwebinars.net/cert/j5bRA
+- Visualización de Datos - OpenWebinars (2020) - https://openwebinars.net/cert/87Aa5

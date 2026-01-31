@@ -1,0 +1,33 @@
+Prompts para generar imágenes del blog (formato 3:2, 1200x800)
+
+Estilo global (aplicar a todos):
+- Ilustración editorial minimalista, sobria, orientada a ingeniería.
+- Fondo oscuro (charcoal) con grilla sutil.
+- Acento en naranja/coral (similar a #ff5a3d), sin neones.
+- Formas simples, geometría limpia, alto contraste, sin ruido.
+- Sin personas, sin rostros, sin manos, sin texto legible, sin logos de marcas.
+- Composición: objeto principal a la izquierda, espacio negativo a la derecha para título.
+
+1) 2026-01-15-modelos-pequenos-eficientes
+PROMPT:
+Ilustración editorial minimalista sobre “eficiencia en IA y modelos pequeños”. Un conjunto de tres módulos apilados (como bloques) y una flecha de ruteo que deriva tráfico: la mayoría va a un bloque pequeño y algunos a un bloque más grande. Añadir un indicador de costo (moneda abstracta) y un indicador de latencia (reloj abstracto) discretos. Fondo oscuro con grilla sutil, acento coral, líneas finas, sin texto.
+NEGATIVO:
+fotografía, 3D hiperrealista, personas, manos, caras, texto, logotipos, marcas, neón intenso, ruido, exceso de sombras.
+
+2) 2026-01-22-agentes-guardrails
+PROMPT:
+Ilustración editorial minimalista sobre “agentes con guardrails”. Un nodo central (agente) conectado a 3 herramientas (iconos abstractos) pero contenido dentro de un marco/riel de seguridad (barandas paralelas) y un símbolo de verificación. Sensación de control y límites. Fondo oscuro con grilla sutil, acento coral, líneas limpias, sin texto.
+NEGATIVO:
+fotografía, personas, texto, logotipos, estilo caricatura, neón, glitch, exceso de detalles.
+
+3) 2026-01-29-ia-en-produccion
+PROMPT:
+Ilustración editorial minimalista sobre “operar IA en producción”. Un panel simple con tres métricas (latencia, costo, calidad) representadas como líneas y puntos, con una alerta discreta y un interruptor de apagado (kill switch) abstracto. Enfatizar observabilidad y control. Fondo oscuro con grilla sutil, acento coral, líneas finas, sin texto.
+NEGATIVO:
+fotografía, UI real de producto con texto, logotipos, personas, exceso de brillo, cyberpunk.
+
+4) 2026-01-30-rag-evaluaciones
+PROMPT:
+Ilustración editorial minimalista sobre “RAG con fuentes y evaluaciones”. Un documento abstracto a la izquierda conectado por líneas a una lupa (recuperación) y a una etiqueta de cita (referencia), con una lista de checks (evaluación) al costado. Sensación de evidencia y auditoría. Fondo oscuro con grilla sutil, acento coral, líneas limpias, sin texto.
+NEGATIVO:
+fotografía, personas, texto legible, logotipos, exceso de detalles, neón.

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Base de datos con corazón">
+  <style>
+    :root{
+      --bg:#f7f3ea;
+      --fg:#14161a;
+      --muted:#74809a;
+      --accent:#ff5a3d;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0d1016;
+        --fg:#eef2ff;
+        --muted:#8a93a6;
+        --accent:#ff6a52;
+      }
+    }
+  </style>
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="var(--bg)"/>
+  <!-- Database (3 levels) -->
+  <g fill="none" stroke="var(--fg)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top ellipse -->
+    <path d="M16 20.5c0-3.1 7.2-5.6 16-5.6s16 2.5 16 5.6-7.2 5.6-16 5.6-16-2.5-16-5.6Z"/>
+    <!-- Level 1 -->
+    <path d="M16 20.5v6.2c0 3.1 7.2 5.6 16 5.6s16-2.5 16-5.6v-6.2"/>
+    <!-- Level 2 -->
+    <path d="M16 26.7v6.2c0 3.1 7.2 5.6 16 5.6s16-2.5 16-5.6v-6.2"/>
+    <!-- Level 3 -->
+    <path d="M16 32.9v6.2c0 3.1 7.2 5.6 16 5.6s16-2.5 16-5.6v-6.2"/>
+  </g>
+  <!-- Heart badge -->
+  <path fill="var(--accent)" d="M46.2 34.2c-2.05 0-3.55 1.27-4.2 2.52c-.65-1.25-2.15-2.52-4.2-2.52
+    c-2.75 0-4.85 2.26-4.85 5.02c0 3.72 3.86 6.45 8.5 9.98c.34.26.81.26 1.15 0
+    c4.64-3.53 8.5-6.26 8.5-9.98c0-2.76-2.1-5.02-4.85-5.02Z"/>
+</svg>

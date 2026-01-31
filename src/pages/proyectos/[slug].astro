@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
+}
+
+const { project } = Astro.props as { project: Awaited<ReturnType<typeof getCollection>>[number] };
+const { Content } = await project.render();
+---
+
+<BaseLayout title={`${project.data.title} | Proyectos`} description={project.data.highlights[0] ?? 'Proyecto de portafolio.'}>
+  <article class="rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--card)_92%,var(--fg)_4%)] p-5 md:p-8">
+    <header class="grid gap-6 md:grid-cols-[1fr_260px] md:items-start">
+      <div class="space-y-4">
+        <p class="text-xs font-semibold tracking-wide text-[var(--muted)]">Proyectos</p>
+        <h1 class="font-display text-4xl leading-tight md:text-5xl">{project.data.title}</h1>
+        <p class="text-sm text-[var(--muted)]">{project.data.year} • {project.data.stack.join(' • ')}</p>
+        <div class="flex flex-wrap gap-2">
+          {project.data.repoUrl && (
+            <a class="btn btn-secondary" href={project.data.repoUrl} rel="noreferrer" target="_blank">Repositorio</a>
+          )}
+          {project.data.liveUrl && (
+            <a class="btn btn-secondary" href={project.data.liveUrl} rel="noreferrer" target="_blank">Demo</a>
+          )}
+        </div>
+      </div>
+
+      {project.data.cover && (
+        <figure class="rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--bg)_55%,var(--card))] p-2 md:mt-8">
+          <img
+            src={project.data.cover}
+            alt={project.data.coverAlt ?? `Ilustración: ${project.data.title}`}
+            class="h-36 w-full rounded-xl object-cover opacity-90 md:h-40"
+            loading="lazy"
+          />
+        </figure>
+      )}
+    </header>
+
+    <div class="prose mt-8 max-w-none prose-headings:font-display prose-headings:text-[var(--fg)] prose-p:text-[var(--fg)] prose-p:leading-relaxed prose-p:first:text-lg prose-p:first:font-medium prose-strong:text-[var(--fg)] prose-a:text-[var(--fg)] prose-a:decoration-[color-mix(in_oklab,var(--accent)_55%,transparent)] prose-a:underline-offset-4 prose-ul:text-[var(--fg)] prose-li:text-[var(--fg)] prose-hr:border-[var(--border)]">
+      <Content />
+    </div>
+
+    <div class="mt-10">
+      <a class="btn btn-secondary" href="/proyectos">Volver a proyectos</a>
+    </div>
+  </article>
+</BaseLayout>

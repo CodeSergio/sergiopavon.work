@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { cv } from '../../data/cv';
+---
+
+<BaseLayout title="CV en texto | Sergio Maximiliano Pavón" description="CV en formato simple y legible por sistemas de selección.">
+  <article class="max-w-3xl">
+    <header>
+      <h1 class="text-3xl font-semibold">{cv.name}</h1>
+      <p class="mt-1 text-sm text-[var(--muted)]">
+        {cv.headline} | {cv.location}
+      </p>
+      <p class="mt-3 flex flex-wrap gap-2">
+        <a class="btn btn-secondary" href="/cv">Versión web</a>
+        <a class="btn btn-secondary" href="/Sergio-Maximiliano-Pavon-CV.txt" target="_blank" rel="noreferrer">Descargar TXT</a>
+      </p>
+    </header>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold">Resumen profesional</h2>
+      <div class="mt-3 space-y-2 text-sm text-[var(--muted)]">
+        {cv.profile.map((p) => (
+          <p>{p}</p>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold">Habilidades técnicas</h2>
+      <p class="mt-3 text-sm text-[var(--muted)]">{cv.skills.join(' | ')}</p>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold">Especialidades</h2>
+      <ul class="mt-3 list-disc pl-5 text-sm text-[var(--muted)]">
+        {cv.specialties.map((s) => (
+          <li>{s}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold">Experiencia</h2>
+      <div class="mt-3 space-y-6">
+        {cv.experience.map((role) => (
+          <section>
+            <h3 class="text-base font-semibold">{role.company} | {role.title}</h3>
+            <p class="mt-0.5 text-sm text-[var(--muted)]">{role.start} - {role.end}</p>
+            <ul class="mt-2 list-disc pl-5 text-sm text-[var(--muted)]">
+              {role.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold">Educación</h2>
+      <ul class="mt-3 list-disc pl-5 text-sm text-[var(--muted)]">
+        {cv.education.map((e) => (
+          <li>{e.title} - {e.institution}{e.details ? ` (${e.details})` : ''}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold">Certificaciones</h2>
+      <ul class="mt-3 grid gap-2">
+        {cv.certifications.map((c) => (
+          <li>
+            <a class="link" href={c.url} rel="noreferrer" target="_blank">{c.label}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BaseLayout>

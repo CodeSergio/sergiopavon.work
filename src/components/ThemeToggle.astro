@@ -1,0 +1,53 @@
+---
+const id = Astro.props.id ?? 'theme-toggle';
+---
+
+<button
+  id={id}
+  type="button"
+  class="icon-btn"
+  data-theme-toggle
+  aria-pressed="false"
+  aria-label="Cambiar a tema oscuro"
+>
+  <span class="sr-only" data-theme-label>Tema</span>
+  <svg
+    data-theme-icon="sun"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    hidden
+  >
+    <path d="M12 18a6 6 0 1 0 0-12a6 6 0 0 0 0 12Z" />
+    <path d="M12 2v2" />
+    <path d="M12 20v2" />
+    <path d="M4.93 4.93l1.41 1.41" />
+    <path d="M17.66 17.66l1.41 1.41" />
+    <path d="M2 12h2" />
+    <path d="M20 12h2" />
+    <path d="M4.93 19.07l1.41-1.41" />
+    <path d="M17.66 6.34l1.41-1.41" />
+  </svg>
+  <svg
+    data-theme-icon="moon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 13.2A8.5 8.5 0 1 1 10.8 3a6.8 6.8 0 0 0 10.2 10.2Z" />
+  </svg>
+</button>

@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { slugifyTag } from '../../../lib/tags';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const map = new Map<string, string>();
+  posts.forEach((p) => {
+    p.data.tags.forEach((t) => {
+      const slug = slugifyTag(t);
+      if (!map.has(slug)) map.set(slug, t);
+    });
+  });
+
+  return Array.from(map.entries()).map(([slug, tag]) => ({
+    params: { tag: slug },
+    props: { tag }
+  }));
+}
+
+const { tag } = Astro.props as { tag: string };
+
+const allPosts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = allPosts.filter((p) => p.data.tags.includes(tag));
+
+const tagCounts = new Map<string, number>();
+allPosts.forEach((p) => {
+  p.data.tags.forEach((t) => {
+    tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  });
+});
+
+const tagsByFrequency = Array.from(tagCounts.entries())
+  .sort((a, b) => {
+    const byCount = b[1] - a[1];
+    if (byCount !== 0) return byCount;
+    return a[0].localeCompare(b[0], 'es');
+  })
+  .map(([t]) => t);
+
+const TOP_TAGS_LIMIT = 8;
+const allTags = tagsByFrequency;
+
+let topTags = allTags.slice(0, TOP_TAGS_LIMIT);
+if (allTags.includes(tag) && !topTags.includes(tag)) {
+  topTags = [tag, ...topTags].slice(0, TOP_TAGS_LIMIT);
+}
+const restTags = allTags.filter((t) => !topTags.includes(t));
+---
+
+<BaseLayout
+  title={`Blog IA: #${tag} | Sergio Maximiliano Pavón`}
+  description={`Artículos de Blog IA etiquetados con #${tag}.`}
+>
+  <header class="space-y-3">
+    <h1 class="font-display text-4xl">Blog IA</h1>
+    <p class="max-w-prose text-[var(--muted)]">
+      Filtro activo: <span class="font-semibold">#{tag}</span>
+    </p>
+  </header>
+
+  <section class="mt-8" aria-label="Filtros">
+    <div class="flex flex-wrap items-center gap-2">
+      <a class="btn btn-secondary" href="/blog">Todo</a>
+
+      {topTags.map((t) => (
+        <a
+          class={`btn btn-secondary ${t === tag ? 'border-[color-mix(in_oklab,var(--accent)_55%,transparent)]' : ''}`}
+          href={`/blog/tag/${slugifyTag(t)}`}
+          aria-current={t === tag ? 'page' : undefined}
+        >
+          <span class="tracking-wide">#{t}</span>
+        </a>
+      ))}
+
+      {restTags.length > 0 && (
+        <details class="group">
+          <summary class="btn btn-secondary list-none select-none">
+            Más temas
+            <span aria-hidden="true" class="ml-1 inline-block transition group-open:rotate-180">▾</span>
+          </summary>
+          <div class="mt-2 flex flex-wrap gap-2">
+            {restTags.map((t) => (
+              <a class="btn btn-secondary" href={`/blog/tag/${slugifyTag(t)}`}>#{t}</a>
+            ))}
+          </div>
+        </details>
+      )}
+    </div>
+  </section>
+
+  <section class="mt-8 grid gap-3" aria-label="Posts">
+    {posts.map((post) => (
+      <article class="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4">
+        <h2 class="font-display text-xl">{post.data.title}</h2>
+        <div class="mt-3 flex flex-col gap-3 sm:flex-row sm:items-start">
+          {post.data.cover && (
+            <img
+              src={post.data.cover}
+              alt={post.data.coverAlt ?? `Miniatura: ${post.data.title}`}
+              class="h-20 w-32 shrink-0 rounded-xl border border-[var(--border)] object-cover"
+              loading="lazy"
+            />
+          )}
+          <div class="min-w-0">
+            <p class="text-sm text-[var(--muted)]">{post.data.excerpt}</p>
+            <time class="mt-2 block text-xs tracking-wide text-[var(--muted)]" datetime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString('es-AR', { year: 'numeric', month: 'short', day: '2-digit' })}
+            </time>
+            <div class="mt-3">
+              <a class="btn btn-secondary" href={`/blog/${post.slug}`}>Leer</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
